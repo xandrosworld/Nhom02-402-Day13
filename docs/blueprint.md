@@ -76,7 +76,7 @@
 
 ### Đặng Tùng Anh
 
-- [TASKS_COMPLETED]\: Xây dựng pattern PII scrubbing bảo vệ dữ liệu nhạy cảm của hệ thống. Đã ẩn thành công email, thẻ tín dụng (`[REDACTED_CREDIT_CARD]`), CCCD (`[REDACTED_CCCD]`) và dữ liệu nội địa như Số điện thoại VN (`[REDACTED_PHONE_VN]`).
+- [TASKS_COMPLETED]\: Đã ẩn và mã hóa thành công email, thẻ tín dụng (`[REDACTED_CREDIT_CARD]`), CCCD (`[REDACTED_CCCD]`), Số điện thoại khu vực VN (`[REDACTED_PHONE_VN]`), cũng như add thêm cụm từ khóa bắt Hộ chiếu (Passport) và Địa chỉ nhà.
 - [EVIDENCE_LINK]\: [evidence/pii-redaction.png](evidence/pii-redaction.png)
 
 ### Nguyễn Đức Hoàng Phúc
