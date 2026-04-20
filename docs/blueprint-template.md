@@ -2,7 +2,7 @@
 
 # Day 13 Observability Lab Report
 
-> **Instruction**: Fill in all sections below. This report is designed to be parsed by an automated grading assistant. Ensure all tags (e.g., `[GROUP_NAME]`) are preserved.
+> This file mirrors `docs/blueprint.md` so older repo references still work.
 
 ## 1. Team Metadata
 

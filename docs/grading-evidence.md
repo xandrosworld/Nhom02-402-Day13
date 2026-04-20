@@ -2,7 +2,7 @@
 
 # Evidence Collection Sheet
 
-Thư mục lưu ảnh evidence: `docs/evidence/`
+Evidence image folder: `docs/evidence/`
 
 ## Required screenshots
 
@@ -16,6 +16,7 @@ Thư mục lưu ảnh evidence: `docs/evidence/`
 
 ## Optional screenshots
 
-- [ ] Incident before/after fix -> `docs/evidence/incident-before-after.png`
+- [x] Incident before screenshot -> `docs/evidence/before.png`
+- [x] Incident after screenshot -> `docs/evidence/after.png`
 - [ ] Cost comparison before/after optimization
 - [ ] Auto-instrumentation proof
