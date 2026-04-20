@@ -48,7 +48,7 @@ async def metrics() -> dict:
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: Request, body: ChatRequest) -> ChatResponse:
     # Owner: Mai Tan Thanh
-    # TODO: Enrich logs with request context (user_id_hash, session_id, feature, model, env)
+    # Bind request-scoped metadata once so every API log line carries the same context.
     bind_contextvars(
         user_id_hash=hash_user_id(body.user_id),
         session_id=body.session_id,
