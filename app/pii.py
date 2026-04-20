@@ -5,11 +5,9 @@ import re
 
 PII_PATTERNS: dict[str, str] = {
     "email": r"[\w\.-]+@[\w\.-]+\.\w+",
-    "phone_vn": r"(?:\+84|0)[ \.-]?\d{3}[ \.-]?\d{3}[ \.-]?\d{3,4}", # Matches 090 123 4567, 090.123.4567, etc.
     "cccd": r"\b\d{12}\b",
+    "phone_vn": r"(?:\+84|0)[ \.-]?\d{2,3}[ \.-]?\d{3}[ \.-]?\d{3,4}\b",
     "credit_card": r"\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b",
-    # Owner: Dang Tung Anh
-    # TODO: Add more patterns (e.g., Passport, Vietnamese address keywords)
     "passport": r"\b[A-Z][0-9]{7}\b",
     "address_vn": r"\b(?:so nha|số nhà|duong|đường|phuong|phường|quan|quận|thanh pho|thành phố|tp\.?)\b[^,;\n]*",
 }
