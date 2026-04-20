@@ -12,7 +12,7 @@ Thư mục lưu ảnh evidence: `docs/evidence/`
 - Log line with PII redaction -> `docs/evidence/pii-redaction.png`
 - Dashboard with 6 panels -> `docs/evidence/dashboard-6-panels.png`
 - Alert rules with runbook link -> `docs/evidence/alert-rules.png`
-- Alert docs (Runbook content) -> `docs/evidence/alert-docs.png`
+- Alert docs (Runbook content) -> `docs/evidence/alert-doc.png`
 
 ## Optional screenshots
 
