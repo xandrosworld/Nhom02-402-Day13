@@ -14,7 +14,25 @@ alerts:
     runbook: docs/alerts.md#2-high-error-rate
   - name: cost_budget_spike
     severity: P2
-    condition: hourly_cost_usd > 2x_baseline for 15m
+    condition: hourly_cost_usd > 0.5 for 15m
     type: symptom-based
     owner: finops-owner
     runbook: docs/alerts.md#3-cost-budget-spike
+  - name: quality_score_drop
+    severity: P3
+    condition: quality_score_avg < 0.75 for 1h
+    type: symptom-based
+    owner: ai-quality-team
+    runbook: docs/alerts.md#4-quality-score-drop
+  - name: traffic_spike_detected
+    severity: P3
+    condition: requests_per_min > 500 for 5m
+    type: symptom-based
+    owner: platform-eng
+    runbook: docs/alerts.md#5-traffic-spike-detected
+  - name: pii_redaction_anomaly
+    severity: P2
+    condition: pii_redact_rate > 20 for 10m
+    type: symptom-based
+    owner: security-team
+    runbook: docs/alerts.md#6-pii-redaction-anomaly
