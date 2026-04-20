@@ -19,8 +19,8 @@
 
 ## 2. Group Performance (Auto-Verified)
 
-- [VALIDATE_LOGS_FINAL_SCORE]\: /100
-- [TOTAL_TRACES_COUNT]\:
+- [VALIDATE_LOGS_FINAL_SCORE]\: 100/100
+- [TOTAL_TRACES_COUNT]\: 58
 - [PII_LEAKS_FOUND]\: 0
 
 ---
@@ -32,7 +32,7 @@
 - [EVIDENCE_CORRELATION_ID_SCREENSHOT]\: [evidence/correlation-id.png](evidence/correlation-id.png)
 - [EVIDENCE_PII_REDACTION_SCREENSHOT]\: [evidence/pii-redaction.png](evidence/pii-redaction.png)
 - [EVIDENCE_TRACE_WATERFALL_SCREENSHOT]\: [evidence/trace-waterfall.png](evidence/trace-waterfall.png)
-- [TRACE_WATERFALL_EXPLANATION]\: (Briefly explain one interesting span in your trace)
+- [TRACE_WATERFALL_EXPLANATION]\: Trace “How should alerts be designed?” cho thấy span end-to-end của pipeline RAG với latency khoảng 0.54s, tokens_in 29, tokens_out 149, cost_usd ~0.0023. Metadata gắn model và tags theo session, giúp debug nhanh theo feature/model.
 
 ### 3.2 Dashboard & SLOs
 
@@ -40,9 +40,9 @@
 - [SLO_TABLE]\:
   | SLI | Target | Window | Current Value |
   |---|---:|---|---:|
-  | Latency P95 | < 3000ms | 28d | |
-  | Error Rate | < 2% | 28d | |
-  | Cost Budget | < $2.5/day | 1d | |
+  | Latency P95 | < 3000ms | 28d | 155ms |
+  | Error Rate | < 2% | 28d | pending |
+  | Cost Budget | < $2.5/day | 1d | $0.0183 (sample run) |
 
 ### 3.3 Alerts & Runbook
 
@@ -76,13 +76,16 @@
 
 ### Đặng Tùng Anh
 
-- [TASKS_COMPLETED]\: Đã ẩn và mã hóa thành công email, thẻ tín dụng (`[REDACTED_CREDIT_CARD]`), CCCD (`[REDACTED_CCCD]`), Số điện thoại khu vực VN (`[REDACTED_PHONE_VN]`), cũng như add thêm cụm từ khóa bắt Hộ chiếu (Passport) và Địa chỉ nhà.
+- [TASKS_COMPLETED]\: Đã ẩn và mã hóa thành công email, thẻ tín dụng ([REDACTED_CREDIT_CARD]), CCCD ([REDACTED_CCCD]), Số điện thoại khu vực VN ([REDACTED_PHONE_VN]), cũng như add thêm cụm từ khóa bắt Hộ chiếu (Passport) và Địa chỉ nhà. Hoàn thiện bộ Unit Test với Pytest cho mọi định dạng PII trên, đảm bảo filter hoạt động chính xác tuyệt đối.
+
 - [EVIDENCE_LINK]\: [evidence/pii-redaction.png](evidence/pii-redaction.png)
 
 ### Nguyễn Đức Hoàng Phúc
 
-- [TASKS_COMPLETED]\:
-- [EVIDENCE_LINK]\:
+- [TASKS_COMPLETED]\: Xây dựng module metrics trong `app/metrics.py` để tổng hợp các chỉ số chính của hệ thống gồm traffic, latency P50/P95/P99, error breakdown, cost, token usage và quality score. Hoàn thiện script `scripts/load_test.py` để tạo tải và sinh dữ liệu thực tế cho dashboard. Sử dụng endpoint `/metrics` làm nguồn dựng dashboard theo đúng `docs/dashboard-spec.md` với đủ 6 panel bắt buộc: latency, traffic, error rate, cost, tokens và quality proxy. Đồng thời hỗ trợ demo incident bằng `scripts/inject_incident.py` với các kịch bản `rag_slow`, `tool_fail`, `cost_spike` để quan sát sự thay đổi của metrics trước và sau khi inject lỗi.
+- [EVIDENCE_LINK]\: [evidence/dashboard-6-panels.png](evidence/dashboard-6-panels.png)
+- [EVIDENCE_LINK]\: [evidence/before.png](evidence/before.png)
+- [EVIDENCE_LINK]\: [evidence/after.png](evidence/after.png)
 
 ### Phạm Lê Hoàng Nam
 
