@@ -14,6 +14,10 @@ A small FastAPI "agent" instrumented with:
 
 This template is intentionally incomplete. Teams are expected to finish TODOs during the lab.
 
+## Team workflow
+
+Use [TEAM_OWNERSHIP.md](c:/Users/DELL/Desktop/test/day13/TEAM_OWNERSHIP.md) as the source of truth for file ownership, branch naming, and deliverables before the team starts coding.
+
 ## Suggested lab flow (Gapped Template)
 
 1. **Run the starter app**: Observe that logs are basic and correlation IDs are missing.
