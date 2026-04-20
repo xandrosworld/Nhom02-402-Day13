@@ -1,83 +1,83 @@
-# Day 13 Team Ownership
+# Phân Công Nhóm Day 13
 
-## Team
+## Thành viên
 
-| Member | Role | Primary Scope |
+| Thành viên | Vai trò | Phạm vi chính |
 |---|---|---|
-| Mai Tan Thanh | Tech Lead / Integration Owner | Logging pipeline, correlation ID, integration, final merge |
-| Ho Nhat Khoa | Tracing Owner | Langfuse setup, trace verification, trace evidence |
-| Dang Tung Anh | PII Owner | PII scrub patterns, tests, log leak verification |
-| Nguyen Duc Hoang Phuc | Metrics & Dashboard Owner | Metrics checks, load test, dashboard panels, incident evidence |
-| Pham Le Hoang Nam | Alerts & Report Owner | SLOs, alert rules, runbook links, blueprint report |
+| Mai Tấn Thành | Tech Lead / Integration Owner | Logging pipeline, correlation ID, tích hợp hệ thống, merge cuối |
+| Hồ Nhất Khoa | Tracing Owner | Setup Langfuse, kiểm tra trace, chụp evidence trace |
+| Đặng Tùng Anh | PII Owner | Pattern scrub PII, test, kiểm tra rò rỉ log |
+| Nguyễn Đức Hoàng Phúc | Metrics & Dashboard Owner | Metrics, load test, dashboard, evidence incident |
+| Phạm Lê Hoàng Nam | Alerts & Report Owner | SLO, alert rules, runbook, blueprint report |
 
-## Working Rule
+## Quy ước làm việc
 
-1. Mai Tan Thanh creates the starter branch and merges final integration changes.
-2. Each member works on a separate branch from the starter commit.
-3. Each member owns the files listed below and should avoid editing files owned by others unless integration requires it.
-4. If a cross-file change is needed, the file owner reviews it before merge.
-5. Every member must keep at least one clear commit for individual evidence.
+1. Mai Tấn Thành chuẩn bị repo starter và merge tích hợp cuối.
+2. Mỗi người tạo branch riêng từ `main`.
+3. Mỗi người chỉ sửa phần file mình phụ trách, tránh đụng file của người khác nếu không cần.
+4. Nếu cần sửa chéo file, phải báo owner file đó trước khi merge.
+5. Mỗi người phải giữ ít nhất một commit rõ ràng để làm bằng chứng cá nhân.
 
-## File Ownership
+## Phân file theo người
 
-### Mai Tan Thanh
+### Mai Tấn Thành
 - `app/middleware.py`
 - `app/main.py`
 - `app/logging_config.py`
-- final integration checks with `scripts/validate_logs.py`
+- kiểm tra tích hợp cuối bằng `scripts/validate_logs.py`
 
-### Ho Nhat Khoa
+### Hồ Nhất Khoa
 - `app/tracing.py`
-- trace verification in `app/agent.py`
-- `.env` setup for Langfuse on local machine
-- evidence from Langfuse UI
+- kiểm tra trace trong `app/agent.py`
+- setup Langfuse trong `.env` trên máy local
+- chụp evidence từ giao diện Langfuse
 
-### Dang Tung Anh
+### Đặng Tùng Anh
 - `app/pii.py`
 - `tests/test_pii.py`
-- log leak verification using `data/sample_queries.jsonl`
+- kiểm tra rò rỉ log bằng `data/sample_queries.jsonl`
 
-### Nguyen Duc Hoang Phuc
+### Nguyễn Đức Hoàng Phúc
 - `app/metrics.py`
 - `scripts/load_test.py`
-- dashboard build from `/metrics`
-- incident test flow with `scripts/inject_incident.py`
+- dựng dashboard từ `/metrics`
+- test incident bằng `scripts/inject_incident.py`
 
-### Pham Le Hoang Nam
+### Phạm Lê Hoàng Nam
 - `config/slo.yaml`
 - `config/alert_rules.yaml`
 - `docs/alerts.md`
 - `docs/blueprint-template.md`
 - `docs/grading-evidence.md`
 
-## Deliverables By Owner
+## Kết quả mỗi người cần bàn giao
 
-### Mai Tan Thanh
-- correlation ID works end-to-end
-- API logs contain `user_id_hash`, `session_id`, `feature`, `model`, `env`
-- response headers include request id and response time
+### Mai Tấn Thành
+- correlation ID chạy xuyên suốt request
+- log API có đủ `user_id_hash`, `session_id`, `feature`, `model`, `env`
+- response headers có `x-request-id` và `x-response-time-ms`
 
-### Ho Nhat Khoa
-- at least 10 traces visible in Langfuse
-- one trace waterfall screenshot
-- trace metadata shows user/session/tags
+### Hồ Nhất Khoa
+- có ít nhất 10 traces trên Langfuse
+- có 1 ảnh trace waterfall
+- trace có metadata user/session/tags
 
-### Dang Tung Anh
-- logs do not expose email, phone, CCCD, or credit card values
-- tests for main PII patterns pass
-- sample leak evidence before/after can be explained
+### Đặng Tùng Anh
+- log không lộ email, số điện thoại, CCCD, thẻ tín dụng
+- test cho các pattern PII chính chạy pass
+- giải thích được ví dụ trước/sau khi scrub
 
-### Nguyen Duc Hoang Phuc
-- dashboard has 6 required panels
-- load test produces enough data for charts
-- incident scenarios can be demonstrated with metrics
+### Nguyễn Đức Hoàng Phúc
+- dashboard có đủ 6 panel theo yêu cầu
+- load test tạo đủ dữ liệu cho biểu đồ
+- demo được incident qua metrics
 
-### Pham Le Hoang Nam
-- alert rules point to valid runbook links
-- SLO table is filled with final values
-- final blueprint report is complete
+### Phạm Lê Hoàng Nam
+- alert rules trỏ đúng runbook
+- bảng SLO được điền đủ giá trị cuối
+- blueprint report hoàn chỉnh
 
-## Suggested Branch Names
+## Gợi ý tên branch
 
 - `mtt/logging-integration`
 - `khoa/tracing`
@@ -85,10 +85,10 @@
 - `phuc/metrics-dashboard`
 - `nam/alerts-report`
 
-## Starter Workflow
+## Quy trình làm starter
 
-1. Push this starter repo to the new group repository.
-2. Ask everyone to clone and create their branch immediately.
-3. Mai Tan Thanh completes the integration baseline first.
-4. Other members work in parallel on their owned files.
-5. Merge in this order: PII -> tracing -> metrics/dashboard -> alerts/report -> final integration.
+1. Repo starter đã được push lên repo nhóm.
+2. Mọi người clone repo và tạo branch riêng ngay.
+3. Mai Tấn Thành giữ phần tích hợp và kiểm tra cuối.
+4. Các thành viên còn lại làm song song theo đúng file phụ trách.
+5. Thứ tự merge khuyến nghị: PII -> tracing -> metrics/dashboard -> alerts/report -> integration cuối.
