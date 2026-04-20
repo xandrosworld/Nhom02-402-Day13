@@ -71,8 +71,8 @@
 
 ### Hồ Nhất Khoa
 
-- [TASKS_COMPLETED]\:
-- [EVIDENCE_LINK]\:
+- [TASKS_COMPLETED]\: Triển khai toàn bộ Langfuse tracing integration trong `app/tracing.py`. Cụ thể: (1) lazy initialization với `get_client()` và graceful fallback no-ops khi thiếu credentials, đảm bảo app chạy được cả khi không có Langfuse; (2) export `observe()` decorator được áp dụng trực tiếp lên `LabAgent.run()` trong `app/agent.py`, tạo trace span bao toàn bộ pipeline RAG; (3) `update_current_trace()` gắn `user_id` đã hash SHA256, `session_id`, và tags `["lab", feature, model]` vào mỗi trace; (4) `update_current_observation()` gắn metadata `doc_count`, `query_preview` (đã scrub PII), `input`, `output` vào span; (5) `tracing_enabled()` được dùng bởi `/health` endpoint để báo cáo trạng thái Langfuse; (6) setup `LANGFUSE_BASE_URL` tự động từ `LANGFUSE_HOST` để tương thích cả self-hosted lẫn cloud.
+- [EVIDENCE_LINK]\: [evidence/trace-list.png](evidence/trace-list.png) | [evidence/trace-waterfall.png](evidence/trace-waterfall.png)
 
 ### Đặng Tùng Anh
 
