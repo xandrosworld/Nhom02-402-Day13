@@ -43,3 +43,40 @@
   - shorten prompts
   - route easy requests to cheaper model
   - apply prompt cache
+
+## 4. Quality score drop
+
+- Severity: P3
+- Trigger: `quality_score_avg < 0.75 for 1h`
+- Impact: degraded AI response quality and user satisfaction
+- First checks:
+  1. Filter [audit.jsonl](../data/audit.jsonl) or Langfuse dashboard for negative feedbacks.
+  2. Evaluate latest prompt or agent pipeline changes.
+- Mitigation:
+  - rollback prompt version
+  - escalate to AI engineers for instruction tuning
+
+## 5. Traffic spike detected
+
+- Severity: P3
+- Trigger: `requests_per_min > 500 for 5m`
+- Impact: high load on infrastructure and APIs, risk of rate-limiting by LLM providers.
+- First checks:
+  1. Check the [Observability Dashboard](dashboard-spec.md) for "Active Sessions" and "Request Volume" panels.
+  2. Identify if the traffic is legitimate or malicious (e.g., from a single IP/User).
+- Mitigation:
+  - scale out replicas
+  - apply API rate limiting to aggressive IPs
+  - notify LLM provider to increase quota if legitimate
+
+## 6. PII redaction anomaly
+
+- Severity: P2
+- Trigger: `pii_redact_rate > 20 for 10m`
+- Impact: potential security risk, malicious intent to prompt-inject sensitive data, or overhead in the redaction pipeline.
+- First checks:
+  1. Review logs in [logs.jsonl](../data/logs.jsonl) for redacted PII patterns (email, phone, credit card).
+  2. Check which users/sessions are sending the most PII.
+- Mitigation:
+  - block or rate-limit suspicious user IDs
+  - review PII scrubbing logic in `app/pii.py` for false positives
